@@ -5,9 +5,11 @@ export const MainSectionContainer = styled.section`
   width: 80%;
   background: ${theme.colors.secondary};
   height: 100vh;
-  //  &.hide{
-  //   width: 100%
-  //  }
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  justify-content: space-between;
 
   @media (max-width: 468px) {
     width: 100%;

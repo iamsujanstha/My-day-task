@@ -6,14 +6,14 @@ import TaskList from "@/components/TaskList";
 
 const MainSection = () => {
   return (
-    <MainSectionContainer className="hide">
-      <div>
+    <MainSectionContainer className="main-section">
+      <div className="heading-container">
         <Heading />
       </div>
-      <div className="list">
+      <div className="task-list-container">
         <TaskList />
       </div>
-      <div className="add-task">
+      <div className="input-field-container">
         <InputField />
       </div>
     </MainSectionContainer>

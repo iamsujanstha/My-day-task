@@ -11,7 +11,19 @@ export const MainSectionContainer = styled.section`
   color: #fff;
   justify-content: space-between;
 
-  @media (max-width: 468px) {
-    width: 100%;
+  .heading-container {
+    height: 64px;
+  }
+
+  .task-list-container {
+    flex: 1; 
+    overflow-y: auto;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .input-field-container {
+    height: 50px; 
+  }
   }
 `;

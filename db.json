@@ -1,9 +1,22 @@
 {
-    "posts": [
-      { "id": 1, "title": "json-server", "author": "typicode" }
-    ],
-    "comments": [
-      { "id": 1, "body": "some comment", "postId": 1 }
-    ],
-    "profile": { "name": "typicode" }
-  }
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Complete Project Proposal",
+      "description": "Write and finalize the project proposal document.",
+      "status": "in-progress"
+    },
+    {
+      "id": 2,
+      "title": "Prepare Presentation",
+      "description": "Create slides for the upcoming project presentation.",
+      "status": "pending"
+    },
+    {
+      "id": 3,
+      "title": "Review Code",
+      "description": "Review and provide feedback on pull request #45.",
+      "status": "completed"
+    }
+  ]
+}

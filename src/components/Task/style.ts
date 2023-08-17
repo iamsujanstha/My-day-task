@@ -16,40 +16,20 @@ export const StyledTask = styled.div`
 
   .task-label{
     display: flex;
-    gap:0.8rem;
+    gap: 1.2rem;
     align-items: center;
 
-    .circular-checkbox {
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background-color: #fff;
-        border: 2px solid #000;
-        margin-right: 10px;
-        position: relative;
+    li{
+      color: #111;
+      list-style: none;
+      letter-spacing: 0.4px;
 
-        & input[type="checkbox"] {
-            opacity: 0;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-            
-        }
+      &.strike{
+        text-decoration: line-through;
+        color: ${theme.colors.darkGrey};
+      }
     }
   }
-
-  span {
-    font-size: 1.4rem;
-    margin-top: 2px;
-  }
-
-  li{
-    color: ${theme.colors.darkGrey};
-    list-style: none;
-  }
-
   .task-action{
     color: #aaa;
     font-size: 1.6rem;

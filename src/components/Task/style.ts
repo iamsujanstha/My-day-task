@@ -13,7 +13,7 @@ export const StyledTask = styled.div`
   background: #fff;
   border-radius: 6px;
   color: black;
-  positon: relative;
+  position: relative;
 
   .task-label{
     display: flex;
@@ -37,6 +37,13 @@ export const StyledTask = styled.div`
     display:flex;
     gap: 1rem;
     cursor:pointer;
+  }
+
+  .action-modal{
+    position: absolute;
+    top: 2.4rem;
+    z-index: 100;
+    right: 1rem;
   }
   }
 `;

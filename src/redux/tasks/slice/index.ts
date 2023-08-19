@@ -36,7 +36,6 @@ export const taskSlice = createSlice({
       state.isLoading = true;
     },
     updateTaskSuccess(state, { payload }: PayloadAction<any>) {
-      console.log("reducer", payload);
       state.isLoading = false;
       state.tasks = payload;
     },
@@ -45,8 +44,45 @@ export const taskSlice = createSlice({
       state.isLoading = true;
     },
     deleteTaskSuccess(state, { payload }: PayloadAction<any>) {
-      state.isLoading = false;
-      state.tasks = payload;
+      return {
+        ...state,
+        isLoading: false,
+        tasks: state.tasks.filter((task) => task.id !== payload),
+      };
+    },
+
+    setCompletedStatus(state, { payload }: PayloadAction<any>) {},
+    setCompletedStatusSuccess(state, { payload }: PayloadAction<any>) {
+      return {
+        ...state,
+        isLoading: false,
+        tasks: state.tasks.map((task) => {
+          if (task.id === payload.id) {
+            return {
+              ...task,
+              status: payload.status,
+            };
+          }
+          return task;
+        }),
+      };
+    },
+
+    setImportant(state, { payload }: PayloadAction<any>) {},
+    setImportantSuccess(state, { payload }: PayloadAction<any>) {
+      return {
+        ...state,
+        isLoading: false,
+        tasks: state.tasks.map((task) => {
+          if (task.id === payload.id) {
+            return {
+              ...task,
+              is_important: payload.is_important,
+            };
+          }
+          return task;
+        }),
+      };
     },
   },
 });

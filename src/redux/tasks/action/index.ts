@@ -9,4 +9,8 @@ export const {
   updateTaskSuccess,
   deleteTask,
   deleteTaskSuccess,
+  setCompletedStatus,
+  setCompletedStatusSuccess,
+  setImportant,
+  setImportantSuccess,
 } = taskSlice.actions;

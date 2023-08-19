@@ -1,4 +1,5 @@
-import taskReducer from "@/redux/taskSlice";
+import { taskSaga } from "@/redux/tasks/saga";
+import taskReducer from "@/redux/tasks/taskSlice";
 import { taskType } from "@/types/taskTypes";
 import { combineReducers } from "@reduxjs/toolkit";
 import { all } from "redux-saga/effects";
@@ -12,5 +13,5 @@ export const rootReducers = combineReducers({
 });
 
 export function* rootSaga() {
-  yield all([]);
+  yield all([taskSaga()]);
 }

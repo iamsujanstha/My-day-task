@@ -2,21 +2,18 @@
   "tasks": [
     {
       "id": 1,
-      "title": "Complete Project Proposal",
-      "description": "Write and finalize the project proposal document.",
-      "status": "in-progress"
+      "task_name": "Write and finalize the project proposal document.",
+      "status": "0"
     },
     {
       "id": 2,
-      "title": "Prepare Presentation",
-      "description": "Create slides for the upcoming project presentation.",
-      "status": "pending"
+      "task_name": "Create slides for the upcoming project presentation.",
+      "status": "1"
     },
     {
       "id": 3,
-      "title": "Review Code",
-      "description": "Review and provide feedback on pull request #45.",
-      "status": "completed"
+      "task_name": "Review and provide feedback on pull request #45.",
+      "status": "2"
     }
   ]
 }

@@ -1,7 +1,6 @@
 export type taskType = {
     id: string,
-    title: string,
-    description: string,
+    task_name: string,
     status: string,
 }
 

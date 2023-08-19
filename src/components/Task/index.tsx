@@ -1,25 +1,24 @@
-import React from "react";
+import React, { use } from "react";
 import Checkbox from "@/components/Checkbox";
 import { StyledTask } from "@/components/Task/style";
 import { clx } from "@/utils/clx";
 import useSound from "use-sound";
 import { BiEdit } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
+import { taskType } from "@/types/taskTypes";
 
-const Task = () => {
+const Task = ({ id, task_name, status }: taskType) => {
   const [isChecked, setIsChecked] = React.useState(false);
-  // const [playSound] = useSound(checked);
 
   const handleChange = () => {
     setIsChecked(!isChecked);
-    // playSound();
   };
 
   return (
     <StyledTask>
       <div className="task-label">
-        <Checkbox isChecked={isChecked} handleChange={handleChange} />
-        <li className={clx(isChecked && "strike")}>This is good morning</li>
+        <Checkbox isChecked={isChecked} handleChange={() => handleChange()} />
+        <li className={clx(isChecked && "strike")}>{task_name}</li>
       </div>
       <div className="task-action">
         <BiEdit color="orange" />

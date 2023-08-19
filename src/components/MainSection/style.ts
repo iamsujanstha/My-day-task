@@ -16,14 +16,20 @@ export const MainSectionContainer = styled.section`
   }
 
   .task-list-container {
-    flex: 1; 
+    flex: 1;
     overflow-y: auto;
     margin-top: 1rem;
     margin-bottom: 2rem;
-  }
+    overflow-x: hidden;
+    overflow-y: auto;
 
-  .input-field-container {
-    height: 50px; 
-  }
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    .input-field-container {
+      height: 50px;
+    }
   }
 `;

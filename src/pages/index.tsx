@@ -2,7 +2,7 @@ import Head from "next/head";
 import Sidebar from "@/components/Sidebar/index";
 import MainSection from "@/components/MainSection";
 import { Provider } from "react-redux";
-import store from "@/redux/store/store";
+import {store} from "@/redux/tasks/store/store";
 
 export default function Home() {
   return (

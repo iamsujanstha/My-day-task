@@ -33,30 +33,37 @@ taskAxios.interceptors.request.use(
   }
 );
 
-taskAxios.interceptors.response.use(
-  function (response) {
-    switch (true) {
-      case Boolean(response.data): {
-        const { status, data } = response;
-        const { data: payloadData, ...extraPayload } = data.payload;
-        return {
-          data: payloadData,
-          message: data.message,
-          status,
-          ...extraPayload,
-        };
-      }
-      case !(response.data && response.data.payload && response.data.payload.data): {
-        Promise.reject("The response doesn't meet the proper required criteria.");
-        return false;
-      }
-      default:
-        return response;
-    }
-  },
-  function (error) {
-    return Promise.reject(error);
-  }
-);
+// taskAxios.interceptors.response.use(
+//   function (response) {
+//     switch (true) {
+//       case Boolean(response.data): {
+//         const { status, data } = response;
+//         const { data: payloadData, ...extraPayload } = data.payload;
+//         return {
+//           data: payloadData,
+//           message: data.message,
+//           status,
+//           ...extraPayload,
+//         };
+
+//         return {
+//           data: response.data.payload.data,
+//           status: response.status,
+//           message: response.data.message,
+//           ...response.data.payload,
+//         }
+//       }
+//       case !(response.data && response.data.payload && response.data.payload.data): {
+//         Promise.reject("The response doesn't meet the proper required criteria.");
+//         return false;
+//       }
+//       default:
+//         return response;
+//     }
+//   },
+//   function (error) {
+//     return Promise.reject(error);
+//   }
+// );
 
 export { taskAxios };

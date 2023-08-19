@@ -2,9 +2,7 @@ import { taskAxios as axios } from "@/utils/axios";
 
 export const taskListApi = {
   get: () => {
-    return axios.get("/").then((response) => {
-      return response.data;
-    });
+    return axios.get("/tasks");
   },
 
   post: ({ payload }: any) => {

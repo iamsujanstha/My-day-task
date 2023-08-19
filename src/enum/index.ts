@@ -6,7 +6,7 @@
 
 export enum taskStatus {
   PENDING = 0,
-  IN_PROGRESS = 1,
-  DONE = 2,
+  ACTIVE = 1,
+  COMPLETED = 2,
   CANCELLED = 3,
 }

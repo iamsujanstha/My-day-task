@@ -2,23 +2,24 @@ import { taskAxios as axios } from "@/utils/axios";
 
 export const taskListApi = {
   get: () => {
-    return axios.get("/tasks");
+    return axios.get("tasks/");
   },
 
-  post: ({ payload }: any) => {
-    return axios.post("/", payload).then((response) => {
+  post: (payload: any) => {
+    console.log("payload", payload)
+    return axios.post("tasks/", payload).then((response) => {
       return response.data;
     });
   },
 
-  put: ({ payload }: any) => {
-    return axios.put("/", payload).then((response) => {
+  put: ({ id, payload }: any) => {
+    return axios.put(`tasks/${id}`, payload).then((response) => {
       return response.data;
     });
   },
 
-  delete: ({ payload }: any) => {
-    return axios.delete("/", payload).then((response) => {
+  delete: ({ id }: any) => {
+    return axios.delete(`tasks/${id}`).then((response) => {
       return response.data;
     });
   },

@@ -5,7 +5,7 @@ export type taskType = {
 }
 
 export type taskStateType = {
-  tasks: taskType[] | null;
+  tasks: taskType[];
   isLoading: boolean;
   errors: string;
 };

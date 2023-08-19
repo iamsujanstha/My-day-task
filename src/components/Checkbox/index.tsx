@@ -2,15 +2,15 @@ import { CheckboxWrapper } from "@/components/Checkbox/style";
 import React from "react";
 
 type CheckboxProps = {
-  isChecked: boolean;
-  handleChange: () => void;
+  status: string;
+  onHandleChange: () => void;
 };
 
-const Checkbox: React.FC<CheckboxProps> = ({ isChecked, handleChange }) => {
+const Checkbox: React.FC<CheckboxProps> = ({ status, onHandleChange }) => {
   return (
     <CheckboxWrapper>
       <div className="round">
-        <input type="checkbox" id="checkbox" checked={isChecked} onChange={handleChange} />
+        <input type="checkbox" id="checkbox" checked={status === "2"} onChange={onHandleChange} />
         <label htmlFor="checkbox"></label>
       </div>
     </CheckboxWrapper>

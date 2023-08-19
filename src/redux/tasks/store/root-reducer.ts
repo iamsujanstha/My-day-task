@@ -1,5 +1,5 @@
 import { taskSaga } from "@/redux/tasks/saga";
-import taskReducer from "@/redux/tasks/taskSlice";
+import taskReducer from "@/redux/tasks/slice";
 import { taskType } from "@/types/taskTypes";
 import { combineReducers } from "@reduxjs/toolkit";
 import { all } from "redux-saga/effects";

@@ -13,6 +13,7 @@ export const StyledTask = styled.div`
   background: #fff;
   border-radius: 6px;
   color: black;
+  positon: relative;
 
   .task-label{
     display: flex;
@@ -36,12 +37,6 @@ export const StyledTask = styled.div`
     display:flex;
     gap: 1rem;
     cursor:pointer;
-     
-    &>svg{
-        &:hover{
-            color: black;
-        }
-    }
   }
   }
 `;

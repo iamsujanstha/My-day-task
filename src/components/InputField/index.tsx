@@ -2,31 +2,56 @@ import { StyledContainer } from "@/components/InputField/style";
 import React from "react";
 import { GrAdd } from "react-icons/gr";
 import { BiCircle } from "react-icons/bi";
+import { useDispatch } from "react-redux";
+import { create } from "domain";
+import { createTask } from "@/redux/tasks/action";
+import { taskStatus } from "@/enum";
 
 const InputField = () => {
   const [isFocused, setIsFocused] = React.useState(false);
   const [inputValue, setInputValue] = React.useState("");
+  const dispatch = useDispatch();
 
-  const handleFocused = () => {
-    setIsFocused(true);
+  const handleSubmit = () => {
+    if (inputValue.trim() !== "") {
+      const payload = {
+        task_name: inputValue,
+        status: taskStatus.ACTIVE, // default status is ACTIVE
+      };
+      console.log(payload);
+      dispatch(createTask(payload));
+
+      setInputValue("");
+    }
   };
 
-  const handleBlur = () => {
-    setIsFocused(false);
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSubmit();
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setInputValue(e.target.value);
   };
 
   return (
     <StyledContainer>
-      <span>{isFocused || inputValue ? <BiCircle color="#aaa" /> : <GrAdd color="#bbb" />}</span>
-      <input
-        type="text"
-        value={inputValue}
-        name="addTask"
-        onChange={(e)=> setInputValue(e.target.value)}
-        placeholder="Add task"
-        onFocus={handleFocused}
-        onBlur={handleBlur}
-      />
+      <form>
+        <span>{isFocused || inputValue ? <BiCircle color="#aaa" size={22} /> : <GrAdd color="#aaa" size={20} />}</span>
+        <input
+          type="text"
+          value={inputValue}
+          name="createTask"
+          onChange={(e) => handleChange(e)}
+          placeholder="Add task"
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          onKeyDown={handleKeyDown}
+        />
+      </form>
     </StyledContainer>
   );
 };

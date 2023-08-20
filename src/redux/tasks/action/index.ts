@@ -14,4 +14,6 @@ export const {
   setImportant,
   setImportantSuccess,
   setSearchedTasks,
+  updateTaskListOrder,
+  setEditableId,
 } = taskSlice.actions;

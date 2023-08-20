@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { taskStateType } from "@/types/taskTypes";
+import { taskStateType, taskType } from "@/types/taskTypes";
 
 const initialState: taskStateType = {
   tasks: [],
   isLoading: false,
   errors: "",
   searchedTasks: [],
+  editableId: "",
 };
 
 export const taskSlice = createSlice({
@@ -25,6 +26,7 @@ export const taskSlice = createSlice({
     createTask(state, { payload }: PayloadAction<any>) {
       state.isLoading = true;
     },
+
     createTaskSuccess(state, { payload }: PayloadAction<any>) {
       return {
         ...state,
@@ -36,15 +38,28 @@ export const taskSlice = createSlice({
     updateTask(state, { payload }: PayloadAction<any>) {
       state.isLoading = true;
     },
+
     updateTaskSuccess(state, { payload }: PayloadAction<any>) {
-      state.isLoading = false;
-      state.tasks = payload;
+      return {
+        ...state,
+        isLoading: false,
+        tasks: state.tasks.map((task) => {
+          if (task.id === payload.id) {
+            return {
+              ...task,
+              task_name: payload.task_name,
+            };
+          }
+          return task;
+        }),
+      };
     },
 
     deleteTask(state, { payload }: PayloadAction<any>) {
       state.isLoading = true;
     },
-    deleteTaskSuccess(state, { payload }: PayloadAction<any>) {
+
+    deleteTaskSuccess(state, { payload }: PayloadAction<taskType>) {
       return {
         ...state,
         isLoading: false,
@@ -88,6 +103,14 @@ export const taskSlice = createSlice({
 
     setSearchedTasks(state, { payload }: PayloadAction<any>) {
       state.searchedTasks = payload;
+    },
+
+    updateTaskListOrder(state, { payload }: PayloadAction<any>) {
+      state.tasks = payload;
+    },
+
+    setEditableId(state, { payload }: PayloadAction<any>) {
+      state.editableId = payload;
     },
   },
 });

@@ -10,4 +10,5 @@ export type taskStateType = {
   isLoading: boolean;
   errors: string;
   searchedTasks: taskType[];
+  editableId: string;
 };

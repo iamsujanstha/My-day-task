@@ -1,6 +1,6 @@
 import React from "react";
 import { CheckboxWrapper } from "@/components/Checkbox/style";
-import { setCompletedStatus } from "@/redux/tasks/action";
+import { setCompletedStatus, updateTask } from "@/redux/tasks/action";
 import { useDispatch, useSelector } from "react-redux";
 import { taskStatus } from "@/enum";
 import { taskList } from "@/redux/tasks/selectors";
@@ -10,7 +10,6 @@ type CheckboxProps = {
 };
 
 const Checkbox: React.FC<CheckboxProps> = ({ taskId }) => {
-  taskId, "taskid";
   const dispatch = useDispatch();
   const taskData = useSelector(taskList);
 

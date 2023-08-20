@@ -4,7 +4,7 @@ import { BiEdit } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteTask, setCompletedStatus } from "@/redux/tasks/action";
+import { deleteTask, updateTask, setEditableId, setCompletedStatus } from "@/redux/tasks/action";
 import { taskStatus } from "@/enum";
 import { taskList } from "@/redux/tasks/selectors";
 
@@ -73,7 +73,7 @@ const ActionModal = ({ isOpen, taskId }: ActionModalProps) => {
         break;
 
       case "edit":
-        "edit";
+        dispatch(setEditableId(id));
         break;
 
       case "delete":

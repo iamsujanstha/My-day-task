@@ -1,6 +1,6 @@
-import React, { SyntheticEvent } from "react";
+import React from "react";
 import { SidebarContainer } from "@/components/Sidebar/style";
-import { BiSearch, BiListCheck, BiHome } from "react-icons/bi";
+import { BiSearch } from "react-icons/bi";
 import { LiaListAlt } from "react-icons/lia";
 import { MdPendingActions } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,13 +16,22 @@ import Image from "next/image";
 import { setSearchedTasks } from "@/redux/tasks/action";
 
 const Sidebar = () => {
-  const [activeTab, setActiveTab] = React.useState("");
   const [searchedQuery, setSearchedQuery] = React.useState("");
+
+  const { asPath } = useRouter();
+  const routeName = asPath ? asPath.split("/")[1] : "";
 
   const taskData = useSelector(taskList);
   const dispatch = useDispatch();
   const { push } = useRouter();
 
+  /* Return total count of important, completed and pending tasks
+    {
+      is_important: number,
+      completed: number,
+      pending: number
+    }
+   */
   const countStatus = taskData?.tasks.reduce(
     (acc, task) => {
       if (task.is_important === true) {
@@ -39,22 +48,26 @@ const Sidebar = () => {
     { is_important: 0, completed: 0, pending: 0 }
   );
 
+  /* Searched tasks list */
   const searchedData = taskData?.tasks.filter((task) =>
     task?.task_name?.toLowerCase().includes(searchedQuery.toLowerCase())
   );
 
-  React.useEffect(() => {
-    if (searchedQuery.length > 0) {
-      dispatch(setSearchedTasks(searchedData));
-      push("/search");
-    } else {
-      dispatch(setSearchedTasks([]));
-      push("/tasks");
-    }
-  }, [searchedQuery]);
-
   const handleSearchedQuery = (e: any) => {
     setSearchedQuery(e.target.value);
+  };
+
+  const handleKeyDown = (e: any) => {
+    if (e.key === "Enter") {
+      setSearchedQuery(e.target.value);
+      if (searchedQuery.length > 0) {
+        dispatch(setSearchedTasks(searchedData));
+        push("/search");
+      } else {
+        dispatch(setSearchedTasks([]));
+        push("/tasks");
+      }
+    }
   };
 
   return (
@@ -66,7 +79,13 @@ const Sidebar = () => {
             <span className="header-title">My Todo</span>
           </div>
           <div className="search-input">
-            <input className="search" type="text" placeholder="Search..." onChange={handleSearchedQuery} />
+            <input
+              className="search"
+              type="text"
+              placeholder="Search..."
+              onChange={handleSearchedQuery}
+              onKeyDown={handleKeyDown}
+            />
             <span>
               <BiSearch size={24} />
             </span>
@@ -74,7 +93,7 @@ const Sidebar = () => {
           <div className="sidebar-menu">
             <ul>
               <Link href="/tasks">
-                <li className={clx(activeTab === "" ? "active" : "")} onClick={() => setActiveTab("myDay")}>
+                <li className={clx(routeName === "tasks" ? "active" : "")}>
                   <span>
                     <BsSun size={24} color="blue" />
                     <span>All tasks</span>
@@ -83,9 +102,7 @@ const Sidebar = () => {
                 </li>
               </Link>
               <Link href="/important">
-                <li
-                  className={clx(activeTab === "important" ? "active" : "")}
-                  onClick={() => setActiveTab("important")}>
+                <li className={clx(routeName === "important" ? "active" : "")}>
                   <span>
                     <AiOutlineStar size={24} color="purple" />
                     <span>Important</span>
@@ -94,9 +111,7 @@ const Sidebar = () => {
                 </li>
               </Link>
               <Link href="/completed">
-                <li
-                  className={clx(activeTab === "completed" ? "active" : "")}
-                  onClick={() => setActiveTab("completed")}>
+                <li className={clx(routeName === "completed" ? "active" : "")}>
                   <span>
                     <LiaListAlt size={24} color="green" />
                     <span>Completed</span>
@@ -105,7 +120,7 @@ const Sidebar = () => {
                 </li>
               </Link>
               <Link href="/pending">
-                <li className={clx(activeTab === "pending" ? "active" : "")} onClick={() => setActiveTab("pending")}>
+                <li className={clx(routeName === "pending" ? "active" : "")}>
                   <span>
                     <MdPendingActions size={24} color="orange" />
                     <span>Pending</span>

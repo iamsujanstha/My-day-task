@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Sidebar from "@/components/Sidebar/index";
 import MainSection from "@/components/MainSection";
-import Logo from "@/assets/images/logo.png";
 
 const TaskLayout: React.FC<any> = ({ tasks, heading }) => {
   return (

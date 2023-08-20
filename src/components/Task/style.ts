@@ -20,6 +20,18 @@ export const StyledTask = styled.div`
     gap: 1.2rem;
     align-items: center;
 
+    .edit-field{
+      width: 100%;
+      
+      & input[type="text"] {
+          font-size: 1.1rem;
+          border: none;
+          outline: none;
+          color: #111;
+          font-weight: 500;
+        }
+  }
+
     li{
       color: #111;
       list-style: none;

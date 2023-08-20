@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { theme } from "@/styles/theme";
 
 export const StyledTasksContainer = styled.div`
   width: 100%;
@@ -15,6 +14,6 @@ export const StyledTasksContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: rem;
   }
 `;

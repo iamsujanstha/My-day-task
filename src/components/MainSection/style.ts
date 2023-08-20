@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { theme } from "@/styles/theme";
 
 export const MainSectionContainer = styled.section`
-  width: 80%;
+  width: 100%;
   background: ${theme.colors.secondary};
   height: 100vh;
   padding: 3rem;
@@ -11,9 +11,28 @@ export const MainSectionContainer = styled.section`
   color: #fff;
   justify-content: space-between;
 
-  .heading-container {
-    height: 64px;
+  @media (max-width: 768px) {
+    height: 100%;
+    width: 100%;
+    padding: 2rem 1rem;
   }
+
+  .hamburger-menu {
+    display: none;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.8s;
+
+    @media (max-width: 968px) {
+      display: block;
+    }
+  }
+
+    .heading-container {
+      height: 64px;
+    }
+
 
   .task-list-container {
     flex: 1;

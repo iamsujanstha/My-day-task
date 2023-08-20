@@ -7,17 +7,13 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import EmptyList from "@/components/EmptyList";
 
-const TaskList = () => {
+const TaskList: React.FC<any> = ({ taskList, heading }) => {
   const dispatch = useDispatch();
-  const taskData = useSelector(taskList);
-
-  const { tasks, isLoading } = taskData;
-
-  const [data, setData] = React.useState<taskType[]>(tasks || []);
 
   const handleTaskCheckboxChange = (task: taskType) => {
-    console.log(task);
+    task;
     const payload = {
       id: task.id,
       status: task.status,
@@ -25,7 +21,7 @@ const TaskList = () => {
       is_important: task.is_important,
     };
     dispatch(setCompletedStatus(payload));
-    console.log(payload);
+    payload;
   };
 
   React.useEffect(() => {
@@ -34,15 +30,20 @@ const TaskList = () => {
 
   return (
     <StyledTasksContainer>
-      {tasks?.map((task: taskType) => (
+      {taskList?.map((task: taskType) => (
         <Task
-          key={task.id}
-          id={task.id}
-          task_name={task.task_name}
-          status={task.status}
-          is_important={task.is_important}
+          key={task?.id}
+          id={task?.id}
+          task_name={task?.task_name}
+          status={task?.status}
+          is_important={task?.is_important}
         />
       ))}
+      {!taskList.length && (
+        <div className="empty-list">
+          <EmptyList innerText={heading} />
+        </div>
+      )}
     </StyledTasksContainer>
   );
 };

@@ -73,7 +73,7 @@ const ActionModal = ({ isOpen, taskId }: ActionModalProps) => {
         break;
 
       case "edit":
-        console.log("edit");
+        "edit";
         break;
 
       case "delete":

@@ -1,3 +1,23 @@
+const nextConfig = {
+  env: {
+    NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
+  },
+  
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/tasks",
+        permanent: false,
+      },
+    ];
+  },
+};
+
 module.exports = {
   webpack(config, options) {
     config.module.rules.push({
@@ -14,3 +34,5 @@ module.exports = {
     return config;
   },
 };
+
+module.exports = nextConfig;

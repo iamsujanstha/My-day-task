@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 export const StyledTask = styled.div`
   width: 100%;
-  height: 3.5rem;
+  // min-height: 3.5rem;
   background: pink;
   display: flex;
   justify-content: space-between;
-  padding: 0 1rem;
+  padding: 1.2rem 1rem;
   gap: 0.8rem;
   align-items: center;
   background: #fff;

@@ -13,4 +13,5 @@ export const {
   setCompletedStatusSuccess,
   setImportant,
   setImportantSuccess,
+  setSearchedTasks,
 } = taskSlice.actions;

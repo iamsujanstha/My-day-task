@@ -6,11 +6,9 @@ export const StyledModal = styled.div`
   background-color: white;
   border-radius: 4px;
   color: black;
-  // position: absolute;
   z-index: 100;
   // right: 6rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  // top: 10rem;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 
   .modal-content {

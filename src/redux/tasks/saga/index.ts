@@ -9,7 +9,7 @@ import * as ACTIONS from "@/redux/tasks/action";
 /* ================================ FETCH TASKS ============================================== */
 export function* getTaskListSaga() {
   yield put(fetchStart());
-  console.log("gettask");
+  ("gettask");
   try {
     let statusCode: number = 0;
     const res: { tasks: taskType } = yield call(() => {
@@ -63,7 +63,7 @@ export function* deleteTaskSaga(action: PayloadAction<any>) {
   try {
     let statusCode: number = 0;
     const { id } = action.payload;
-    console.log(action);
+    action;
     const res: { tasks: taskType } = yield call(() => {
       return taskListApi.delete(id).then((res) => {
         statusCode = 200;

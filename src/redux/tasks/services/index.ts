@@ -1,4 +1,4 @@
-import { taskType } from '@/types/taskTypes';
+import { taskType } from "@/types/taskTypes";
 import { taskAxios as axios } from "@/utils/axios";
 
 export const taskListApi = {
@@ -7,7 +7,7 @@ export const taskListApi = {
   },
 
   post: (payload: taskType) => {
-    console.log("payload", payload);
+    "payload", payload;
     return axios.post("tasks/", payload).then((response) => {
       return response.data;
     });

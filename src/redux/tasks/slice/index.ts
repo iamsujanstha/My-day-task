@@ -5,6 +5,7 @@ const initialState: taskStateType = {
   tasks: [],
   isLoading: false,
   errors: "",
+  searchedTasks: [],
 };
 
 export const taskSlice = createSlice({
@@ -12,7 +13,7 @@ export const taskSlice = createSlice({
   initialState,
   reducers: {
     getTaskList(state) {
-      console.log(state);
+      state;
       state.isLoading = true;
     },
 
@@ -83,6 +84,10 @@ export const taskSlice = createSlice({
           return task;
         }),
       };
+    },
+
+    setSearchedTasks(state, { payload }: PayloadAction<any>) {
+      state.searchedTasks = payload;
     },
   },
 });

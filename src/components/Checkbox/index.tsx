@@ -10,28 +10,37 @@ type CheckboxProps = {
 };
 
 const Checkbox: React.FC<CheckboxProps> = ({ taskId }) => {
+  taskId, "taskid";
   const dispatch = useDispatch();
   const taskData = useSelector(taskList);
 
-  const { tasks, isLoading } = taskData;
+  const { tasks } = taskData;
 
   const data = tasks.find((task) => taskId === task.id);
   const { id, status, task_name, is_important } = data || {};
 
-  const handleChecked = () => {
+  const handleChecked = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    const newStatus = status === taskStatus.COMPLETED ? taskStatus.ACTIVE : taskStatus.COMPLETED;
     const payload = {
       id,
-      status: taskStatus.COMPLETED === status ? taskStatus.ACTIVE : taskStatus.COMPLETED,
+      status: newStatus,
       task_name,
       is_important,
     };
     dispatch(setCompletedStatus(payload));
+    payload;
   };
 
   return (
     <CheckboxWrapper>
       <div className="round">
-        <input type="checkbox" id="checkbox" checked={data?.status === taskStatus.COMPLETED} onChange={handleChecked} />
+        <input
+          type="checkbox"
+          id="checkbox"
+          checked={data?.status === taskStatus.COMPLETED}
+          onChange={(e) => handleChecked(e)}
+        />
         <label htmlFor="checkbox"></label>
       </div>
     </CheckboxWrapper>

@@ -17,8 +17,8 @@ const InputField = () => {
       const payload = {
         task_name: inputValue,
         status: taskStatus.ACTIVE, // default status is ACTIVE
+        isImportant: false, // default isImportant is false
       };
-      console.log(payload);
       dispatch(createTask(payload));
 
       setInputValue("");

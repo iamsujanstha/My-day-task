@@ -12,3 +12,8 @@
   display: flex;
   font-family: "Poppins", sans-serif;
 }
+
+body:has(.sidebar-menu) {
+  overflow: hidden;
+}
+

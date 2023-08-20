@@ -4,5 +4,6 @@ export const theme = {
     secondary: "#697dcd",
     lightGrey: "#ededed",
     darkGrey: "#606060",
+    blueGrey: "#395359",
   },
 };

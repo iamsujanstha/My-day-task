@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import Checkbox from "@/components/Checkbox";
 import { StyledTask } from "@/components/Task/style";
 import { clx } from "@/utils/clx";
 import useSound from "use-sound";
@@ -11,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { setCompletedStatus, setImportant } from "@/redux/tasks/action";
 
 const ActionModal = dynamic(() => import("@/components/Modals/ActionModal"), { ssr: false });
+const Checkbox = dynamic(() => import("@/components/Checkbox"), { ssr: false });
 
 type TaskProps = {
   id: string;

@@ -7,6 +7,10 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
 
+  compiler: {
+    styledComponents: true,
+  },
+
   async redirects() {
     return [
       {

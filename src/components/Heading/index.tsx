@@ -8,6 +8,7 @@ import { searchedKeyword } from "@/redux/tasks/selectors";
 import { RxDotsHorizontal } from "react-icons/rx";
 import ThemeModal from "@/components/Modals/ThemeSeclection";
 import ClickOutside from "@/components/ClickOutside";
+import Tooltip from "@/components/Tooltip";
 
 const Heading = ({ title }: any) => {
   const [showModal, setShowModal] = React.useState(false);
@@ -39,12 +40,14 @@ const Heading = ({ title }: any) => {
         <p>{currentDate}</p>
       </div>
       <div>
+        <Tooltip content="Theme option">
+          <span onClick={handleClick}>
+            <RxDotsHorizontal size={26} />
+          </span>
+        </Tooltip>
         <ClickOutside onClose={() => setShowModal(false)}>
           <span className="theme-modal">{showModal && <ThemeModal />}</span>
         </ClickOutside>
-        <span onClick={handleClick}>
-          <RxDotsHorizontal size={26} />
-        </span>
       </div>
     </StyledHeader>
   );

@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect } from "react";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 
@@ -48,8 +49,6 @@ const MainSection: React.FC<MainSectionProps> = ({ tasks, heading }) => {
   const selectedBg = bgColor.color
     ? bgColor.color
     : bgColor.img && `url(${bgColor.img})`;
-  
-  
 
   return (
     <MainSectionContainer

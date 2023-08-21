@@ -7,9 +7,12 @@ import "react-loading-skeleton/dist/skeleton.css";
 import Task from "@/components/Task";
 import { StyledTasksContainer } from "@/components/TaskList/style";
 import { getTaskList, updateTaskListOrder } from "@/redux/tasks/action";
+import { taskType } from "@/types/taskTypes";
+import PopupModal from "@/components/Modals/Popup";
 
-
-const EmptyList = dynamic(() => import("@/components/EmptyList"), { ssr: false });
+const EmptyList = dynamic(() => import("@/components/EmptyList"), {
+  ssr: false,
+});
 
 const TaskList: React.FC<any> = ({ taskList, heading }) => {
   const dispatch = useDispatch();
@@ -34,11 +37,22 @@ const TaskList: React.FC<any> = ({ taskList, heading }) => {
       <DragDropContext onDragEnd={handleDragEnd}>
         <Droppable droppableId="taskList">
           {(provided) => (
-            <StyledTasksContainer {...provided.droppableProps} ref={provided.innerRef}>
+            <StyledTasksContainer
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
               {taskList?.map((task: any, index: number) => (
-                <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
+                <Draggable
+                  key={task.id}
+                  draggableId={task.id.toString()}
+                  index={index}
+                >
                   {(provided) => (
-                    <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                    >
                       <Task
                         id={task.id}
                         task_name={task.task_name}

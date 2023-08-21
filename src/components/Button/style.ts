@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const ButtonContainer = styled.div`
-  background: #f3f3f3;
   color: #000;
   border: none;
   border-radius: 5px;
@@ -11,7 +10,10 @@ export const ButtonContainer = styled.div`
   button {
     border: none;
     border-radius: 3px;
-    padding: 5px 24px;
+    margin-top: 0.5rem;
+    outline: none;
+    padding: 8px 24px;
+    cursor: pointer;
   }
   .danger {
     background: #de383b;
@@ -19,6 +21,7 @@ export const ButtonContainer = styled.div`
   }
   .primary {
     background: #1e90ff;
-    color: #666;
+    color: black;
+    font-weight: 500;
   }
 `;

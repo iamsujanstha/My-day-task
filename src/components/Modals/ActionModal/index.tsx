@@ -15,6 +15,8 @@ import { taskStatus } from "@/enum";
 import { taskList } from "@/redux/tasks/selectors";
 import { StyledModal } from "@/components/Modals/ActionModal/style";
 import Tooltip from "@/components/Tooltip";
+import { taskCancelled } from "@reduxjs/toolkit/dist/listenerMiddleware/exceptions";
+import ClickOutside from "@/components/ClickOutside";
 
 const PopupModal = dynamic(() => import("@/components/Modals/Popup"), {
   ssr: false,
@@ -49,6 +51,7 @@ type ActionModalProps = {
 const ActionModal = ({ isOpen, taskId }: ActionModalProps) => {
   const [isClicked, setIsClicked] = React.useState(false);
   const [showModal, setShowModal] = React.useState(false);
+  const [itemName, setItemName] = React.useState("");
 
   const dispatch = useDispatch();
   const taskData = useSelector(taskList);
@@ -59,6 +62,7 @@ const ActionModal = ({ isOpen, taskId }: ActionModalProps) => {
   const { id, status, task_name, is_important } = data || {};
 
   const handleClick = (id: any, item: any) => {
+    setItemName(task_name);
     setIsClicked(true);
     const action =
       item.id === 1 && status === taskStatus.COMPLETED
@@ -91,7 +95,8 @@ const ActionModal = ({ isOpen, taskId }: ActionModalProps) => {
         break;
 
       case "delete":
-        dispatch(deleteTask({ id }));
+        // dispatch(deleteTask({ id }));
+        setShowModal(true);
         break;
 
       default:
@@ -99,13 +104,15 @@ const ActionModal = ({ isOpen, taskId }: ActionModalProps) => {
     }
   };
 
+  console.log(itemName, "showModal");
   return (
-    <StyledModal
-      style={{ display: isClicked ? "none" : isOpen ? "block" : "" }}
-    >
-      <div className="modal-content">
-        <ul>
-          {modalItems.map((item) => (
+    <>
+      <StyledModal
+        style={{ display: isClicked ? "none" : isOpen ? "block" : "" }}
+      >
+        <div className="modal-content">
+          <ul>
+            {modalItems.map((item) => (
               <li
                 key={item.id}
                 onClick={() => handleClick(id, item)}
@@ -123,10 +130,21 @@ const ActionModal = ({ isOpen, taskId }: ActionModalProps) => {
                 </span>
                 {/* <span className="shortcut">{item.shortcut}</span> */}
               </li>
-          ))}
-        </ul>
-      </div>
-    </StyledModal>
+            ))}
+          </ul>
+        </div>
+      </StyledModal>
+      {showModal && (
+        <ClickOutside onClose={() => setShowModal(false)}>
+          <PopupModal
+            title={"Delete Task"}
+            taskName={itemName}
+            taskId={taskId}
+            setShowModal={setShowModal}
+          />
+        </ClickOutside>
+      )}
+    </>
   );
 };
 

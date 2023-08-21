@@ -1,12 +1,13 @@
+import React from "react";
+import { useDispatch } from "react-redux";
+import dynamic from "next/dynamic";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import "react-loading-skeleton/dist/skeleton.css";
+
 import Task from "@/components/Task";
 import { StyledTasksContainer } from "@/components/TaskList/style";
 import { getTaskList, updateTaskListOrder } from "@/redux/tasks/action";
-import { taskType } from "@/types/taskTypes";
-import "react-loading-skeleton/dist/skeleton.css";
-import React from "react";
-import { useDispatch } from "react-redux";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import dynamic from "next/dynamic";
+
 
 const EmptyList = dynamic(() => import("@/components/EmptyList"), { ssr: false });
 
@@ -51,7 +52,7 @@ const TaskList: React.FC<any> = ({ taskList, heading }) => {
               {provided.placeholder}
               {taskList?.length === 0 && (
                 <div className="empty-list">
-                  <EmptyList heading={heading} />
+                  <EmptyList innerText={heading} />
                 </div>
               )}
             </StyledTasksContainer>

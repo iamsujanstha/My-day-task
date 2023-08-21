@@ -11,4 +11,9 @@ export type taskStateType = {
   errors: string;
   searchedTasks: taskType[];
   editableId: string;
+  searchedKeyword: string;
+  modalOpen: {
+    state: boolean;
+    id: string;
+  };
 };

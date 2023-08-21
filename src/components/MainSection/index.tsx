@@ -1,16 +1,18 @@
 import React from "react";
-import { MainSectionContainer } from "@/components/MainSection/style";
+import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
+
 import InputField from "@/components/InputField";
 import Heading from "@/components/Heading";
 import TaskList from "@/components/TaskList";
-import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 import { taskType } from "@/types/taskTypes";
+import bgImage from "@/assets/images/background.jpg";
+import { MainSectionContainer } from "@/components/MainSection/style";
 
 type MainSectionProps = {
   tasks: taskType;
   heading: string;
 };
-const MainSection: React.FC<any> = ({ tasks, heading }) => {
+const MainSection: React.FC<MainSectionProps> = ({ tasks, heading }) => {
   const [showSidebar, setShowSidebar] = React.useState(false);
 
   const handleClick = () => {
@@ -21,8 +23,20 @@ const MainSection: React.FC<any> = ({ tasks, heading }) => {
     body?.classList.toggle("show-sidebar");
   };
 
+  const handleModal = () => {
+    localStorage.removeItem("showModal");
+  };
+
   return (
-    <MainSectionContainer className="main-section">
+    <MainSectionContainer
+      className="main-section"
+      style={{
+        backgroundImage: `url(${bgImage.src})`,
+        width: "100%",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}>
       <span className="hamburger-menu" onClick={handleClick}>
         {!showSidebar ? <RxHamburgerMenu size={30} /> : <RxCross1 size={24} color="#606060" />}
       </span>

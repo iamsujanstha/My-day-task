@@ -1,9 +1,10 @@
+import React from "react";
+import Head from "next/head";
+import { taskList } from "@/redux/tasks/selectors";
+import { useSelector } from "react-redux";
+
 import { taskStatus } from "@/enum";
 import TaskLayout from "@/pages";
-import { taskList } from "@/redux/tasks/selectors";
-import Head from "next/head";
-import React from "react";
-import { useSelector } from "react-redux";
 
 const PendingTasks = () => {
   const taskData = useSelector(taskList);
@@ -16,7 +17,7 @@ const PendingTasks = () => {
       <Head>
         <title>My Tasks</title>
       </Head>
-      <TaskLayout tasks={allTasks} heading="Pending Tasks" />
+      <TaskLayout tasks={allTasks} heading="Pending" />
     </>
   );
 };

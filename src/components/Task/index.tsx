@@ -1,19 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import { StyledTask } from "@/components/Task/style";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { BiCheck, BiCheckDouble } from "react-icons/bi";
+import { RxDotsHorizontal } from "react-icons/rx";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+
+import { editableId } from "@/redux/tasks/selectors";
 import { clx } from "@/utils/clx";
 import useSound from "use-sound";
-import { RxDotsHorizontal } from "react-icons/rx";
 import { taskStatus } from "@/enum";
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { useDispatch } from "react-redux";
-import { setEditableId, setImportant, updateTask } from "@/redux/tasks/action";
-import { useSelector } from "react-redux";
-import { editableId } from "@/redux/tasks/selectors";
+import { setEditableId, setImportant, setModalOpen, updateTask } from "@/redux/tasks/action";
 import Tooltip from "@/components/Tooltip";
+import { StyledTask } from "@/components/Task/style";
 
 const ActionModal = dynamic(() => import("@/components/Modals/ActionModal"), { ssr: false });
-const Checkbox = dynamic(() => import("@/components/Checkbox"), { ssr: false });
 
 type TaskProps = {
   id: string;
@@ -99,13 +100,17 @@ const Task: React.FC<TaskProps> = ({ id, task_name, status, is_important }) => {
     }
   };
 
-  console.log("isEditable", isEditable);
-
   return (
     <>
       <StyledTask>
         <div className="task-label">
-          <Checkbox taskId={id} />
+          <span>
+            {status === taskStatus.COMPLETED ? (
+              <BiCheckDouble color="#333" size={24} />
+            ) : (
+              <BiCheck color="#333" size={24} />
+            )}
+          </span>
           {isEditable ? (
             <div className="edit-field">
               <input
@@ -121,17 +126,28 @@ const Task: React.FC<TaskProps> = ({ id, task_name, status, is_important }) => {
                 onKeyDown={(e) => {
                   handleOnKeyDown(e);
                 }}
-                size={100}
+                className="edit-input"
               />
             </div>
           ) : (
-            <li className={clx(taskStatus[status] === "COMPLETED" && "strike")}>{task_name}</li>
+            <li
+              className={clx(taskStatus[status] === "COMPLETED" && "strike")}
+              onDoubleClick={() => setModalOpen(true)}>
+              {task_name}
+            </li>
           )}
         </div>
         <div className="task-action">
           {isImportant ? (
             <Tooltip content="Remove importance">
-              <AiFillStar size={20} fill="gold" onClick={() => handleImportant(id)} />
+              <AiFillStar
+                size={20}
+                fill="gold"
+                onClick={() => {
+                  handleImportant(id);
+                  console.log("id2", id);
+                }}
+              />
             </Tooltip>
           ) : (
             <Tooltip content="Mark as important">
@@ -142,6 +158,10 @@ const Task: React.FC<TaskProps> = ({ id, task_name, status, is_important }) => {
             size={20}
             onMouseEnter={() => setHoveredTaskId(id)}
             onMouseLeave={() => setHoveredTaskId("")}
+            onClick={() => setHoveredTaskId(id)}
+            onTouchStart={() => setHoveredTaskId(id)} // Handle touch start event
+            // onTouchEnd={() => setHoveredTaskId("")} // Handle touch end event
+            onTouchCancel={() => setHoveredTaskId("")} // Handle touch cancel event
           />
         </div>
         {showModal && (

@@ -1,11 +1,11 @@
-import { StyledContainer } from "@/components/InputField/style";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { GrAdd } from "react-icons/gr";
 import { BiCircle } from "react-icons/bi";
-import { useDispatch } from "react-redux";
-import { create } from "domain";
+
 import { createTask } from "@/redux/tasks/action";
 import { taskStatus } from "@/enum";
+import { StyledContainer } from "@/components/InputField/style";
 
 const InputField = () => {
   const [isFocused, setIsFocused] = React.useState(false);

@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+
 import { StyledTooltip } from "@/components/Tooltip/style";
 
 interface TooltipProps {

@@ -1,34 +1,32 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+
 import { CheckboxWrapper } from "@/components/Checkbox/style";
-import { setCompletedStatus, updateTask } from "@/redux/tasks/action";
-import { useDispatch, useSelector } from "react-redux";
+import { setCompletedStatus } from "@/redux/tasks/action";
 import { taskStatus } from "@/enum";
-import { taskList } from "@/redux/tasks/selectors";
 
 type CheckboxProps = {
   taskId: string;
+  taskName: string;
+  status: number;
+  isImportant: boolean;
+  onClick?: () => void;
 };
 
-const Checkbox: React.FC<CheckboxProps> = ({ taskId }) => {
+const Checkbox: React.FC<CheckboxProps> = ({ taskId, taskName, status, isImportant, onClick }) => {
   const dispatch = useDispatch();
-  const taskData = useSelector(taskList);
 
-  const { tasks } = taskData;
-
-  const data = tasks.find((task) => taskId === task.id);
-  const { id, status, task_name, is_important } = data || {};
-
-  const handleChecked = (e: React.SyntheticEvent) => {
-    e.preventDefault();
+  const handleChecked = () => {
     const newStatus = status === taskStatus.COMPLETED ? taskStatus.ACTIVE : taskStatus.COMPLETED;
     const payload = {
-      id,
+      id: taskId,
       status: newStatus,
-      task_name,
-      is_important,
+      task_name: taskName,
+      is_important: isImportant,
     };
+    console.log(taskId);
+
     dispatch(setCompletedStatus(payload));
-    payload;
   };
 
   return (
@@ -37,10 +35,10 @@ const Checkbox: React.FC<CheckboxProps> = ({ taskId }) => {
         <input
           type="checkbox"
           id="checkbox"
-          checked={data?.status === taskStatus.COMPLETED}
-          onChange={(e) => handleChecked(e)}
+          checked={status === taskStatus.COMPLETED}
+          onChange={onClick ? onClick : handleChecked}
         />
-        <label htmlFor="checkbox"></label>
+        <label htmlFor="checkbox" />
       </div>
     </CheckboxWrapper>
   );

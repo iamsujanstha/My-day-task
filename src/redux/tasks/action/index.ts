@@ -16,4 +16,6 @@ export const {
   setSearchedTasks,
   updateTaskListOrder,
   setEditableId,
+  setModalOpen,
+  setSearchedKeyword,
 } = taskSlice.actions;

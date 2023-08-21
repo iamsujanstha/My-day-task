@@ -1,19 +1,20 @@
 import React from "react";
-import { SidebarContainer } from "@/components/Sidebar/style";
-import { BiSearch } from "react-icons/bi";
-import { LiaListAlt } from "react-icons/lia";
-import { MdPendingActions } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
-import { taskList } from "@/redux/tasks/selectors";
-import { taskStatus } from "@/enum";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { clx } from "@/utils/clx";
+import { useDispatch, useSelector } from "react-redux";
+import { taskList } from "@/redux/tasks/selectors";
+import { BiSearch } from "react-icons/bi";
 import { AiOutlineStar } from "react-icons/ai";
+import { LiaListAlt } from "react-icons/lia";
+import { MdPendingActions } from "react-icons/md";
 import { BsSun } from "react-icons/bs";
+
+import { taskStatus } from "@/enum";
+import { clx } from "@/utils/clx";
 import Logo from "@/assets/images/logo.png";
 import Image from "next/image";
-import { setSearchedTasks } from "@/redux/tasks/action";
+import { setSearchedKeyword, setSearchedTasks } from "@/redux/tasks/action";
+import { SidebarContainer } from "@/components/Sidebar/style";
 
 const Sidebar = () => {
   const [searchedQuery, setSearchedQuery] = React.useState("");
@@ -49,8 +50,8 @@ const Sidebar = () => {
   );
 
   /* Searched tasks list */
-  const searchedData = taskData?.tasks.filter((task) =>
-    task?.task_name?.toLowerCase().includes(searchedQuery.toLowerCase())
+  const searchedData = taskData?.tasks.filter(
+    (task) => task?.task_name?.toLowerCase().includes(searchedQuery.toLowerCase())
   );
 
   const handleSearchedQuery = (e: any) => {
@@ -62,6 +63,8 @@ const Sidebar = () => {
       setSearchedQuery(e.target.value);
       if (searchedQuery.length > 0) {
         dispatch(setSearchedTasks(searchedData));
+        dispatch(setSearchedKeyword(searchedQuery));
+        localStorage.setItem("searchedQuery", searchedQuery);
         push("/search");
       } else {
         dispatch(setSearchedTasks([]));
@@ -85,6 +88,7 @@ const Sidebar = () => {
               placeholder="Search..."
               onChange={handleSearchedQuery}
               onKeyDown={handleKeyDown}
+              size={24}
             />
             <span>
               <BiSearch size={24} />

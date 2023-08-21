@@ -16,7 +16,7 @@ const Completed = () => {
       <Head>
         <title>Completed</title>
       </Head>
-      <TaskLayout tasks={completedTasks} heading="Completed Task" />
+      <TaskLayout tasks={completedTasks} heading="Completed" />
     </>
   );
 };

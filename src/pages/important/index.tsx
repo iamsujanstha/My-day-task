@@ -1,9 +1,9 @@
-import { taskStatus } from "@/enum";
+import React from "react";
+import Head from "next/head";
+import { useSelector } from "react-redux";
+
 import TaskLayout from "@/pages";
 import { taskList } from "@/redux/tasks/selectors";
-import Head from "next/head";
-import React from "react";
-import { useSelector } from "react-redux";
 
 const ImportantTasks = () => {
   const taskData = useSelector(taskList);
@@ -16,7 +16,7 @@ const ImportantTasks = () => {
       <Head>
         <title>My Tasks</title>
       </Head>
-      <TaskLayout tasks={allTasks} heading="Important Tasks" />
+      <TaskLayout tasks={allTasks} heading="Important" />
     </>
   );
 };

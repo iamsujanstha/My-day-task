@@ -1,8 +1,9 @@
+import React from "react";
+import Head from "next/head";
+import { useSelector } from "react-redux";
+
 import TaskLayout from "@/pages";
 import { taskList } from "@/redux/tasks/selectors";
-import Head from "next/head";
-import React from "react";
-import { useSelector } from "react-redux";
 
 const Tasks = () => {
   const taskData = useSelector(taskList);

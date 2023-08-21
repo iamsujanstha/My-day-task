@@ -76,6 +76,8 @@ export const SidebarContainer = styled.aside`
                 border:none;
                 background-color: #f3f3f3;
                 padding: 0 10px;
+                font-size: 1rem;
+                color: ${theme.colors.darkGrey};
                 
                 &:focus{
                     outline: none;

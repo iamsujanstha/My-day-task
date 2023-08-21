@@ -3,7 +3,6 @@ import { theme } from "@/styles/theme";
 
 export const MainSectionContainer = styled.section`
   width: 100%;
-  background: ${theme.colors.secondary};
   height: 100vh;
   padding: 3rem;
   display: flex;
@@ -39,8 +38,9 @@ export const MainSectionContainer = styled.section`
     overflow-y: auto;
     margin-top: 1rem;
     margin-bottom: 2rem;
-    overflow-x: hidden;
+    overflow-x: auto;
     overflow-y: auto;
+    // box-shadow: rgba(0, 0, 0, 0.85) 0px 25px 50px -20px;
 
       &::-webkit-scrollbar {
         display: none;

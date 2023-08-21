@@ -7,7 +7,7 @@ export const StyledTask = styled.div`
   background: pink;
   display: flex;
   justify-content: space-between;
-  padding: 1.2rem 1rem;
+  padding: 0.8rem 1rem;
   gap: 0.8rem;
   align-items: center;
   background: #fff;
@@ -22,8 +22,13 @@ export const StyledTask = styled.div`
 
     .edit-field{
       width: 100%;
+
+      // .edit-input{
+      //   width: 500px;
+      // }
       
-      & input[type="text"] {
+     input[type="text"] {
+          // width: 100%;
           font-size: 1.1rem;
           border: none;
           outline: none;
@@ -53,7 +58,7 @@ export const StyledTask = styled.div`
 
   .action-modal{
     position: absolute;
-    top: 2.4rem;
+    top: 2rem;
     z-index: 100;
     right: 1rem;
   }

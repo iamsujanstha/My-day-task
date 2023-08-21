@@ -8,7 +8,7 @@ export const Container = styled.div`
 
   .empty-section {
     width: 100%;
-    padding: 2rem;
+    padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,11 +16,13 @@ export const Container = styled.div`
 
     h3 {
       padding: 1.5rem 0 0.6rem 0;
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
 
     p {
+      text-align: center;
       font-size: 0.7rem;
+      padding: 0 2rem;
     }
   }
 `;

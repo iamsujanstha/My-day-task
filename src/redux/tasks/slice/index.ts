@@ -7,6 +7,11 @@ const initialState: taskStateType = {
   errors: "",
   searchedTasks: [],
   editableId: "",
+  searchedKeyword: "",
+  modalOpen: {
+    state: false,
+    id: "",
+  },
 };
 
 export const taskSlice = createSlice({
@@ -23,11 +28,11 @@ export const taskSlice = createSlice({
       state.tasks = payload;
     },
 
-    createTask(state, { payload }: PayloadAction<any>) {
+    createTask(state, { payload }: PayloadAction<taskType>) {
       state.isLoading = true;
     },
 
-    createTaskSuccess(state, { payload }: PayloadAction<any>) {
+    createTaskSuccess(state, { payload }: PayloadAction<taskType>) {
       return {
         ...state,
         isLoading: false,
@@ -35,11 +40,11 @@ export const taskSlice = createSlice({
       };
     },
 
-    updateTask(state, { payload }: PayloadAction<any>) {
+    updateTask(state, { payload }: PayloadAction<taskType>) {
       state.isLoading = true;
     },
 
-    updateTaskSuccess(state, { payload }: PayloadAction<any>) {
+    updateTaskSuccess(state, { payload }: PayloadAction<taskType>) {
       return {
         ...state,
         isLoading: false,
@@ -55,7 +60,7 @@ export const taskSlice = createSlice({
       };
     },
 
-    deleteTask(state, { payload }: PayloadAction<any>) {
+    deleteTask(state, { payload }: PayloadAction<{ id: string }>) {
       state.isLoading = true;
     },
 
@@ -67,8 +72,8 @@ export const taskSlice = createSlice({
       };
     },
 
-    setCompletedStatus(state, { payload }: PayloadAction<any>) {},
-    setCompletedStatusSuccess(state, { payload }: PayloadAction<any>) {
+    setCompletedStatus(state, { payload }: PayloadAction<taskType>) {},
+    setCompletedStatusSuccess(state, { payload }: PayloadAction<taskType>) {
       return {
         ...state,
         isLoading: false,
@@ -84,8 +89,8 @@ export const taskSlice = createSlice({
       };
     },
 
-    setImportant(state, { payload }: PayloadAction<any>) {},
-    setImportantSuccess(state, { payload }: PayloadAction<any>) {
+    setImportant(state, { payload }: PayloadAction<taskType>) {},
+    setImportantSuccess(state, { payload }: PayloadAction<taskType>) {
       return {
         ...state,
         isLoading: false,
@@ -105,12 +110,23 @@ export const taskSlice = createSlice({
       state.searchedTasks = payload;
     },
 
+    setSearchedKeyword(state, { payload }: PayloadAction<string>) {
+      state.searchedKeyword = payload;
+    },
+
     updateTaskListOrder(state, { payload }: PayloadAction<any>) {
       state.tasks = payload;
     },
 
-    setEditableId(state, { payload }: PayloadAction<any>) {
+    setEditableId(state, { payload }: PayloadAction<string>) {
       state.editableId = payload;
+    },
+
+    setModalOpen(state, { payload }: PayloadAction<boolean>) {
+      state.modalOpen = {
+        ...state.modalOpen,
+        state: payload,
+      };
     },
   },
 });

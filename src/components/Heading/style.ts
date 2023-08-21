@@ -6,6 +6,7 @@ export const StyledHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: relative;
 
   .container {
     display: flex;
@@ -16,6 +17,12 @@ export const StyledHeader = styled.div`
     p {
       font-size: 0.9rem;
       font-weight: 500;
+    }
+
+    .theme-modal {
+      position: absolute;
+      top: 0;
+      right: 10px;
     }
   }
 `;

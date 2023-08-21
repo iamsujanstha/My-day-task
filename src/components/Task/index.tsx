@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import { BiCheck, BiCheckDouble } from "react-icons/bi";
+import { useDispatch } from "react-redux";
 import { RxDotsHorizontal } from "react-icons/rx";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
@@ -10,11 +10,19 @@ import { editableId } from "@/redux/tasks/selectors";
 import { clx } from "@/utils/clx";
 import useSound from "use-sound";
 import { taskStatus } from "@/enum";
-import { setEditableId, setImportant, setModalOpen, updateTask } from "@/redux/tasks/action";
+import {
+  setEditableId,
+  setImportant,
+  setModalOpen,
+  updateTask,
+} from "@/redux/tasks/action";
 import Tooltip from "@/components/Tooltip";
 import { StyledTask } from "@/components/Task/style";
+import ClickOutside from "@/components/ClickOutside";
 
-const ActionModal = dynamic(() => import("@/components/Modals/ActionModal"), { ssr: false });
+const ActionModal = dynamic(() => import("@/components/Modals/ActionModal"), {
+  ssr: false,
+});
 
 type TaskProps = {
   id: string;
@@ -26,10 +34,10 @@ type TaskProps = {
 const Task: React.FC<TaskProps> = ({ id, task_name, status, is_important }) => {
   const [isEditable, setIsEditable] = useState(false);
   const [editValue, setEditValue] = useState("");
+  const [isShowModal, setIsShowModal] = useState(false);
   const [hoveredTaskId, setHoveredTaskId] = useState("");
   const [isImportant, setIsImportant] = useState(is_important);
   const inputRef = useRef<HTMLInputElement>(null);
-  const modalRef = useRef(null);
 
   const editId = useSelector(editableId);
   const dispatch = useDispatch();
@@ -47,20 +55,6 @@ const Task: React.FC<TaskProps> = ({ id, task_name, status, is_important }) => {
       setEditValue(task_name);
     }
   }, [editId]);
-
-  const handleDocumentClick = (event: any) => {
-    if (modalRef.current && !modalRef.current?.contains(event.target)) {
-      setHoveredTaskId("");
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", handleDocumentClick);
-
-    return () => {
-      document.removeEventListener("click", handleDocumentClick);
-    };
-  }, []);
 
   const handleImportant = (taskId: string) => {
     const payload = {
@@ -100,6 +94,11 @@ const Task: React.FC<TaskProps> = ({ id, task_name, status, is_important }) => {
     }
   };
 
+  const handleClick = (id: string) => {
+    setHoveredTaskId(id);
+    setIsShowModal(true);
+  };
+
   return (
     <>
       <StyledTask>
@@ -132,7 +131,8 @@ const Task: React.FC<TaskProps> = ({ id, task_name, status, is_important }) => {
           ) : (
             <li
               className={clx(taskStatus[status] === "COMPLETED" && "strike")}
-              onDoubleClick={() => setModalOpen(true)}>
+              onDoubleClick={() => setModalOpen(true)}
+            >
               {task_name}
             </li>
           )}
@@ -151,27 +151,25 @@ const Task: React.FC<TaskProps> = ({ id, task_name, status, is_important }) => {
             </Tooltip>
           ) : (
             <Tooltip content="Mark as important">
-              <AiOutlineStar size={20} fill="gold" onClick={() => handleImportant(id)} />
+              <AiOutlineStar
+                size={20}
+                fill="gold"
+                onClick={() => handleImportant(id)}
+              />
             </Tooltip>
           )}
           <RxDotsHorizontal
             size={20}
-            onMouseEnter={() => setHoveredTaskId(id)}
-            onMouseLeave={() => setHoveredTaskId("")}
-            onClick={() => setHoveredTaskId(id)}
-            onTouchStart={() => setHoveredTaskId(id)} // Handle touch start event
-            // onTouchEnd={() => setHoveredTaskId("")} // Handle touch end event
-            onTouchCancel={() => setHoveredTaskId("")} // Handle touch cancel event
+            onClick={() => handleClick(id)}
+            onTouchStart={() => handleClick(id)}
           />
         </div>
-        {showModal && (
-          <div
-            ref={modalRef}
-            className="action-modal"
-            onMouseEnter={() => setHoveredTaskId(id)}
-            onMouseLeave={() => setHoveredTaskId("")}>
-            <ActionModal isOpen={showModal} taskId={id} />
-          </div>
+        {isShowModal && (
+          <ClickOutside onClose={() => setIsShowModal(false)}>
+            <div className="action-modal">
+              <ActionModal isOpen={showModal} taskId={id} />
+            </div>
+          </ClickOutside>
         )}
       </StyledTask>
     </>

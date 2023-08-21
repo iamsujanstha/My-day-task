@@ -18,4 +18,5 @@ export const {
   setEditableId,
   setModalOpen,
   setSearchedKeyword,
+  setThemeColor,
 } = taskSlice.actions;

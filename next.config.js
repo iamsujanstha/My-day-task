@@ -2,7 +2,7 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
   },
-  
+
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -16,9 +16,7 @@ const nextConfig = {
       },
     ];
   },
-};
 
-module.exports = {
   webpack(config, options) {
     config.module.rules.push({
       test: /\.(ogg|mp3|wav|mpe?g)$/i,
@@ -32,6 +30,17 @@ module.exports = {
       ],
     });
     return config;
+  },
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "picsum.photos", // Update to a string, not an array
+        port: "",
+        pathname: "/account123/**",
+      },
+    ],
   },
 };
 

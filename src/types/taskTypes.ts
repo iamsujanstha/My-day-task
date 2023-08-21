@@ -16,4 +16,8 @@ export type taskStateType = {
     state: boolean;
     id: string;
   };
+  theme: {
+    color: string;
+    img: string;
+  };
 };

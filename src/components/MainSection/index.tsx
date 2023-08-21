@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 
 import InputField from "@/components/InputField";
@@ -7,6 +7,9 @@ import TaskList from "@/components/TaskList";
 import { taskType } from "@/types/taskTypes";
 import bgImage from "@/assets/images/background.jpg";
 import { MainSectionContainer } from "@/components/MainSection/style";
+import { useSelector } from "react-redux";
+import { themeColor } from "@/redux/tasks/selectors";
+import { clx } from "@/utils/clx";
 
 type MainSectionProps = {
   tasks: taskType;
@@ -14,6 +17,12 @@ type MainSectionProps = {
 };
 const MainSection: React.FC<MainSectionProps> = ({ tasks, heading }) => {
   const [showSidebar, setShowSidebar] = React.useState(false);
+  const [bgColor, setBgColor] = React.useState({
+    color: "",
+    img: "",
+  });
+
+  const bg = useSelector(themeColor);
 
   const handleClick = () => {
     setShowSidebar(!showSidebar);
@@ -23,22 +32,39 @@ const MainSection: React.FC<MainSectionProps> = ({ tasks, heading }) => {
     body?.classList.toggle("show-sidebar");
   };
 
-  const handleModal = () => {
-    localStorage.removeItem("showModal");
-  };
+  console.log(bg, "bg");
+  console.log(bgColor, "bgColor");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const themeValue = localStorage.getItem("theme");
+      if (themeValue) {
+        const theme = JSON.parse(themeValue);
+        setBgColor(theme);
+      }
+    }
+  }, [bg.color, bg.img]);
+
+  const selectedBg = bgColor.color
+    ? bgColor.color
+    : bgColor.img && `url(${bgColor.img})`;
+  
+  
 
   return (
     <MainSectionContainer
-      className="main-section"
       style={{
-        backgroundImage: `url(${bgImage.src})`,
-        width: "100%",
+        background: selectedBg || `url(${bgImage.src})`,
         backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}>
+        transition: "all 0.5s ease-in-out",
+      }}
+    >
       <span className="hamburger-menu" onClick={handleClick}>
-        {!showSidebar ? <RxHamburgerMenu size={30} /> : <RxCross1 size={24} color="#606060" />}
+        {!showSidebar ? (
+          <RxHamburgerMenu size={30} />
+        ) : (
+          <RxCross1 size={24} color="#606060" />
+        )}
       </span>
       <div className="heading-container">
         <Heading title={heading} />

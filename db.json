@@ -1,21 +1,15 @@
 {
   "tasks": [
     {
-      "status": 1,
-      "task_name": "Complete quarterly financial analysis report.",
-      "is_important": false,
-      "id": 11
-    },
-    {
       "status": 2,
       "task_name": "Purchase ingredients for the surprise birthday party",
       "is_important": true,
       "id": 12
     },
     {
-      "status": 3,
+      "status": 1,
       "task_name": "Schedule follow-up meeting with potential high-value client",
-      "is_important": true,
+      "is_important": false,
       "id": 13
     },
     {
@@ -25,15 +19,15 @@
       "id": 14
     },
     {
+      "task_name": "Submit final revisions for the upcoming book publication.",
       "status": 1,
-      "task_name": "Submit final revisions for the upcoming book publication",
-      "is_important": true,
+      "is_important": false,
       "id": 15
     },
     {
-      "status": 2,
+      "status": 1,
       "task_name": "Organize team-building workshop for department",
-      "is_important": false,
+      "is_important": true,
       "id": 16
     },
     {

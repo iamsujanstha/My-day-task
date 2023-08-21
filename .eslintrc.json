@@ -3,7 +3,6 @@
   "rules": {
     "react-hooks/exhaustive-deps": "off",
     "react-hooks/rules-of-hooks": "error",
-    "react/self-closing-comp": "error",
     "react/react-in-jsx-scope": "off",
     "no-console": "off",
     "no-template-curly-in-string": "error"

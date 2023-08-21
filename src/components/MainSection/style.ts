@@ -3,15 +3,16 @@ import { theme } from "@/styles/theme";
 
 export const MainSectionContainer = styled.section`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   padding: 3rem;
   display: flex;
   flex-direction: column;
   color: #fff;
   justify-content: space-between;
+  background-size: cover;
 
   @media (max-width: 768px) {
-    height: 100%;
+    height: 100dvh;
     width: 100%;
     padding: 2rem 1rem;
   }
@@ -49,6 +50,7 @@ export const MainSectionContainer = styled.section`
 
     .input-field-container {
       height: 50px;
+      // margin-bottom:1rem;
     }
   }
 `;

@@ -67,6 +67,10 @@ export const SidebarContainer = styled.aside`
             width: 85%;
             margin-top: 2rem;
 
+            @media (max-width: 968px) {
+                width: 95%;
+            }
+
             span{
                 margin-right: 10px;
             }

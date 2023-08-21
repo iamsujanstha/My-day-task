@@ -12,6 +12,10 @@ const initialState: taskStateType = {
     state: false,
     id: "",
   },
+  theme: {
+    color: "",
+    img: "",
+  },
 };
 
 export const taskSlice = createSlice({
@@ -127,6 +131,12 @@ export const taskSlice = createSlice({
         ...state.modalOpen,
         state: payload,
       };
+    },
+
+    setThemeColor(state, { payload }: PayloadAction<{ color: string, img: string }>) {
+      const { color, img } = payload;
+      state.theme.color = color;
+      state.theme.img = img;
     },
   },
 });

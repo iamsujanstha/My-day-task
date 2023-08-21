@@ -5,8 +5,13 @@ import { useSelector } from "react-redux";
 
 import { StyledHeader } from "@/components/Heading/style";
 import { searchedKeyword } from "@/redux/tasks/selectors";
+import { RxDotsHorizontal } from "react-icons/rx";
+import ThemeModal from "@/components/Modals/ThemeSeclection";
+import ClickOutside from "@/components/ClickOutside";
 
 const Heading = ({ title }: any) => {
+  const [showModal, setShowModal] = React.useState(false);
+
   const currentDate = moment().format("dddd, MMMM D");
   const searchedText = useSelector(searchedKeyword);
 
@@ -19,13 +24,27 @@ const Heading = ({ title }: any) => {
     };
   }, []);
 
-  const showTitle = searchedText ? `${title} result for "${searchedText}"` : title;
+  const showTitle = searchedText
+    ? `${title} result for "${searchedText}"`
+    : title;
+
+  const handleClick = () => {
+    setShowModal(!showModal);
+  };
 
   return (
     <StyledHeader>
       <div className="container">
         <h2>{showTitle}</h2>
         <p>{currentDate}</p>
+      </div>
+      <div>
+        <ClickOutside onClose={() => setShowModal(false)}>
+          <span className="theme-modal">{showModal && <ThemeModal />}</span>
+        </ClickOutside>
+        <span onClick={handleClick}>
+          <RxDotsHorizontal size={26} />
+        </span>
       </div>
     </StyledHeader>
   );

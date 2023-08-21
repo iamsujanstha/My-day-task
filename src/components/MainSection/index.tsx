@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 
 import InputField from "@/components/InputField";
@@ -10,7 +11,6 @@ import bgImage from "@/assets/images/background.jpg";
 import { MainSectionContainer } from "@/components/MainSection/style";
 import { useSelector } from "react-redux";
 import { themeColor } from "@/redux/tasks/selectors";
-import { clx } from "@/utils/clx";
 
 type MainSectionProps = {
   tasks: taskType;
@@ -22,6 +22,8 @@ const MainSection: React.FC<MainSectionProps> = ({ tasks, heading }) => {
     color: "",
     img: "",
   });
+  const { asPath } = useRouter();
+  const route = asPath.split("/")[1];
 
   const bg = useSelector(themeColor);
 
@@ -32,9 +34,6 @@ const MainSection: React.FC<MainSectionProps> = ({ tasks, heading }) => {
     sidebar?.classList.toggle("show-sidebar");
     body?.classList.toggle("show-sidebar");
   };
-
-  console.log(bg, "bg");
-  console.log(bgColor, "bgColor");
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -72,7 +71,7 @@ const MainSection: React.FC<MainSectionProps> = ({ tasks, heading }) => {
         <TaskList taskList={tasks} heading={heading} />
       </div>
       <div className="input-field-container">
-        <InputField />
+        {route !== "completed" && <InputField />}
       </div>
     </MainSectionContainer>
   );

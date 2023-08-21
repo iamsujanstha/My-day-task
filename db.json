@@ -1,15 +1,14 @@
 {
   "tasks": [
     {
+      "status": 2,
       "task_name": "Submit final revisions for the upcoming book publication.",
-      "status": 1,
       "is_important": false,
       "id": 15
     },
     {
+      "status": 2,
       "task_name": "Todo need to attend the meeting.",
-      "status": 1,
-      "isImportant": true,
       "id": 19
     }
   ]

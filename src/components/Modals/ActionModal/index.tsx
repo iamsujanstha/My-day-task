@@ -104,7 +104,6 @@ const ActionModal = ({ isOpen, taskId }: ActionModalProps) => {
     }
   };
 
-  console.log(itemName, "showModal");
   return (
     <>
       <StyledModal

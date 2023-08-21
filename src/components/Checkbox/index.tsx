@@ -24,7 +24,6 @@ const Checkbox: React.FC<CheckboxProps> = ({ taskId, taskName, status, isImporta
       task_name: taskName,
       is_important: isImportant,
     };
-    console.log(taskId);
 
     dispatch(setCompletedStatus(payload));
   };

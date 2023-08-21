@@ -16,7 +16,7 @@ const InputField = () => {
   const dispatch = useDispatch();
 
   const route = asPath.split("/")[1];
-console.log(route === 'important')
+  
   const handleSubmit = () => {
     if (inputValue.trim() !== "") {
       const payload = {

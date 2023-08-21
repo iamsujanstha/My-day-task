@@ -145,7 +145,6 @@ const Task: React.FC<TaskProps> = ({ id, task_name, status, is_important }) => {
                 fill="gold"
                 onClick={() => {
                   handleImportant(id);
-                  console.log("id2", id);
                 }}
               />
             </Tooltip>

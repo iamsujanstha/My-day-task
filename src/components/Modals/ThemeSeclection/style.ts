@@ -2,16 +2,6 @@ import { theme } from "@/styles/theme";
 import styled from "styled-components";
 
 export const StyledThemeContainer = styled.div`
-  // background: rgba(0, 0, 0, 0.5);
-  // height: 100vh;
-  // position: fixed;
-  // width: 100vw;
-  // top: 0;
-  // left: 0;
-  // z-index: 10;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
   z-index: 10;
 
   .theme-container {

@@ -52,9 +52,9 @@ const MainSection: React.FC<MainSectionProps> = ({ tasks, heading }) => {
   return (
     <MainSectionContainer
       style={{
-        background: selectedBg || `url(${bgImage.src})`,
+        background: selectedBg ?? `url(${bgImage.src})`,
         backgroundSize: "cover",
-        transition: "all 0.5s ease-in-out",
+        transition: "all 0.8s ease-in-out",
       }}
     >
       <span className="hamburger-menu" onClick={handleClick}>

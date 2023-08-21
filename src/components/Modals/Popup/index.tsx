@@ -25,7 +25,6 @@ const PopupModal: React.FC<PopupModalProps> = ({
     taskId && dispatch(deleteTask({ id: taskId }));
     setShowModal(false);
   };
-  console.log(taskName, "taskName");
 
   return (
     <PopupContainer>

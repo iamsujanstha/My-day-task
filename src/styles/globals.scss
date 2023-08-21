@@ -6,14 +6,13 @@
   box-sizing: border-box;
 }
 
-
 .main {
   width: 100%;
   display: flex;
   font-family: "Poppins", sans-serif;
+  height: 100vh;
 }
 
 body:has(.sidebar-menu) {
   overflow: hidden;
 }
-

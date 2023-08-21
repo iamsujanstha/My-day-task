@@ -2,12 +2,12 @@
   "tasks": [
     {
       "status": 1,
-      "task_name": "Complete quarterly financial analysis report",
+      "task_name": "Complete quarterly financial analysis report.",
       "is_important": false,
       "id": 11
     },
     {
-      "status": 1,
+      "status": 2,
       "task_name": "Purchase ingredients for the surprise birthday party",
       "is_important": true,
       "id": 12
@@ -19,7 +19,7 @@
       "id": 13
     },
     {
-      "status": 2,
+      "status": 1,
       "task_name": "Research and draft presentation for conference next week",
       "is_important": true,
       "id": 14
@@ -35,6 +35,12 @@
       "task_name": "Organize team-building workshop for department",
       "is_important": false,
       "id": 16
+    },
+    {
+      "task_name": "Fix bugs in tiktok pixel.",
+      "status": 1,
+      "is_important": false,
+      "id": 17
     }
   ]
 }

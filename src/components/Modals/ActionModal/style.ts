@@ -26,6 +26,12 @@ export const StyledModal = styled.div`
         height: 100%;
         padding: 1rem;
 
+        &.disabled{
+          opacity: 0.5;
+          pointer-events: none;
+          cursor: not-allowed;
+        }
+
         &:hover {
           background-color: ${theme.colors.lightGrey};
           border-radius: 4px;

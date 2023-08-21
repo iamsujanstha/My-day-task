@@ -5,12 +5,20 @@ import { BiEdit } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 
-import { deleteTask, updateTask, setEditableId, setCompletedStatus } from "@/redux/tasks/action";
+import {
+  deleteTask,
+  updateTask,
+  setEditableId,
+  setCompletedStatus,
+} from "@/redux/tasks/action";
 import { taskStatus } from "@/enum";
 import { taskList } from "@/redux/tasks/selectors";
 import { StyledModal } from "@/components/Modals/ActionModal/style";
+import Tooltip from "@/components/Tooltip";
 
-const PopupModal = dynamic(() => import("@/components/Modals/Popup"), { ssr: false });
+const PopupModal = dynamic(() => import("@/components/Modals/Popup"), {
+  ssr: false,
+});
 
 const modalItems = [
   {
@@ -52,7 +60,10 @@ const ActionModal = ({ isOpen, taskId }: ActionModalProps) => {
 
   const handleClick = (id: any, item: any) => {
     setIsClicked(true);
-    const action = item.id === 1 && status === taskStatus.COMPLETED ? "uncomplete" : item.action;
+    const action =
+      item.id === 1 && status === taskStatus.COMPLETED
+        ? "uncomplete"
+        : item.action;
 
     switch (action) {
       case "complete":
@@ -89,17 +100,29 @@ const ActionModal = ({ isOpen, taskId }: ActionModalProps) => {
   };
 
   return (
-    <StyledModal style={{ display: isClicked ? "none" : isOpen ? "block" : "" }}>
+    <StyledModal
+      style={{ display: isClicked ? "none" : isOpen ? "block" : "" }}
+    >
       <div className="modal-content">
         <ul>
           {modalItems.map((item) => (
-            <li key={item.id} onClick={() => handleClick(id, item)}>
-              <span className={`icon ${item.id}`}>{item.icon}</span>
-              <span className={`name ${item.name}`}>
-                {item.id === 1 && status === taskStatus.COMPLETED ? "Mark as not completed" : item.name}
-              </span>
-              {/* <span className="shortcut">{item.shortcut}</span> */}
-            </li>
+              <li
+                key={item.id}
+                onClick={() => handleClick(id, item)}
+                className={
+                  item.id === 2 && status === taskStatus.COMPLETED
+                    ? "disabled"
+                    : ""
+                }
+              >
+                <span className={`icon ${item.id}`}>{item.icon}</span>
+                <span className={`name ${item.name}`}>
+                  {item.id === 1 && status === taskStatus.COMPLETED
+                    ? "Mark as not completed"
+                    : item.name}
+                </span>
+                {/* <span className="shortcut">{item.shortcut}</span> */}
+              </li>
           ))}
         </ul>
       </div>

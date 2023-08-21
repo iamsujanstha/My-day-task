@@ -56,9 +56,8 @@
       "id": 20
     },
     {
+      "status": 2,
       "task_name": "Thss",
-      "status": 1,
-      "isImportant": false,
       "id": 21
     }
   ]

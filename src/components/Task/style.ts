@@ -16,19 +16,17 @@ export const StyledTask = styled.div`
   position: relative;
 
   .task-label{
+    flex: 1;
     display: flex;
     gap: 1.2rem;
     align-items: center;
 
     .edit-field{
       width: 100%;
-
-      // .edit-input{
-      //   width: 500px;
-      // }
+      flex:1;
       
      input[type="text"] {
-          // width: 100%;
+          width: 100%;
           font-size: 1.1rem;
           border: none;
           outline: none;

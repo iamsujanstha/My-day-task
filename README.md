@@ -1,4 +1,6 @@
 ## To Run Todo App
+
+**Live Demo:** https://todo-app-five-tau-93.vercel.app/tasks
 ## `git clone <Link>`
 
 Clone this project to your local environment through git clone.
@@ -17,6 +19,7 @@ Clone this project to your local environment through git clone.
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg" alt="Sass" width="40" height="40"/>
 </a>
 </p>
+
 ## Follow these below instructions to install App.
 ### To install Node modules
 **npm:**
@@ -67,4 +70,3 @@ yarn dev
 • **Deleting:** Remove tasks from the list when they are no longer relevant.\
 • **Search:** Search for specific tasks based on searched keyword.\
 • **User-Friendly Interface:** The intuitive and responsive user interface ensures a seamless experience.
-

@@ -9,7 +9,7 @@ Clone this project to your local environment through git clone.
 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> 
 <a href="https://www.w3.org/html/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a>
 <a href="https://nextjs.org/docs/getting-started" target="_blank">
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nextjs/nextjs-original-wordmark.svg" alt="Next.js" width="60" height="50"/>
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nextjs/nextjs-original.svg" alt="Next.js" width="40" height="40"/>
 </a>
 <a href="https://www.typescriptlang.org/docs/" target="_blank">
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg" alt="TypeScript" width="40" height="40"/>
@@ -18,6 +18,11 @@ Clone this project to your local environment through git clone.
 <a href="https://sass-lang.com/documentation/" target="_blank">
 <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg" alt="Sass" width="40" height="40"/>
 </a>
+
+<a href="https://sass-lang.com/documentation/" target="_blank">
+<img src="https://www.daggala.com/static/228867c3668e439101821568a8a03b54/19ca5/sc.png" alt="Sass" width="50" height="50"/>
+</a>
+
 </p>
 
 ## Follow these below instructions to install App.

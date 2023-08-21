@@ -5,7 +5,8 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js" />
+        <link rel="favicon" href="/src/assets/images/logo.png" />
       </Head>
       <body>
         <Main />

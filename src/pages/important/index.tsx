@@ -14,7 +14,7 @@ const ImportantTasks = () => {
   return (
     <>
       <Head>
-        <title>My Tasks</title>
+        <title>Important</title>
       </Head>
       <TaskLayout tasks={allTasks} heading="Important" />
     </>

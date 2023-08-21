@@ -15,7 +15,7 @@ const PendingTasks = () => {
   return (
     <>
       <Head>
-        <title>My Tasks</title>
+        <title>Pending</title>
       </Head>
       <TaskLayout tasks={allTasks} heading="Pending" />
     </>

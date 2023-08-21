@@ -7,25 +7,5 @@
     "react/react-in-jsx-scope": "off",
     "no-console": "off",
     "no-template-curly-in-string": "error"
-  },
-  "import/order": [
-    "error",
-    {
-      "warnOnUnassignedImports": false,
-      "newlines-between": "always",
-      "pathGroups": [
-        {
-          "pattern": "react",
-          "group": "builtin",
-          "position": "before"
-        },
-        {
-          "pattern": "@/**",
-          "group": "external",
-          "position": "after"
-        }
-      ],
-      "pathGroupsExcludedImportTypes": ["react"]
-    }
-  ]
+  }
 }

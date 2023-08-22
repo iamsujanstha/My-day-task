@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "json-server": "json-server --watch db.json --port 8000",
+    "lint": "next lint",
+    "dev-with-server": "concurrently \"npm run dev\" \"npm run json-server\""
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
@@ -34,6 +36,7 @@
   "devDependencies": {
     "@types/react-beautiful-dnd": "^13.1.4",
     "babel-plugin-styled-components": "^2.1.4",
+    "concurrently": "^8.2.0",
     "daisyui": "^3.5.1",
     "file-loader": "^6.2.0",
     "prettier": "3.0.2",

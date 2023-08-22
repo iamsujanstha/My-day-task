@@ -138,6 +138,22 @@ export const taskSlice = createSlice({
       state.theme.color = color;
       state.theme.img = img;
     },
+
+    updateTaskStatus(state, { payload }: PayloadAction<taskType>) { 
+      return {
+        ...state,
+        isLoading: false,
+        tasks: state.tasks.map((task) => {
+          if (task.id === payload.id) {
+            return {
+              ...task,
+              status: payload.status,
+            };
+          }
+          return task;
+        }),
+      };
+    }
   },
 });
 

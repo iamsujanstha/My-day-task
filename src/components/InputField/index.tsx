@@ -23,6 +23,7 @@ const InputField = () => {
         task_name: inputValue,
         status: taskStatus.ACTIVE, // default status is ACTIVE
         is_important: route === "important" ? true : false, // default isImportant is false
+        created_at: new Date().toISOString(),
       };
       dispatch(createTask(payload));
 

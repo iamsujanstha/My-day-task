@@ -3,6 +3,7 @@ export type taskType = {
   task_name?: string | undefined;
   status?: number | undefined;
   is_important?: boolean | undefined;
+  created_at?: string | undefined;
 };
 
 export type taskStateType = {

@@ -52,7 +52,7 @@ const MainSection: React.FC<MainSectionProps> = ({ tasks, heading }) => {
   return (
     <MainSectionContainer
       style={{
-        background: selectedBg ?? `url(${bgImage.src})`,
+        background: selectedBg || `url(${bgImage.src})`,
         backgroundSize: "cover",
         transition: "all 0.8s ease-in-out",
       }}

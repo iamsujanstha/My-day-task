@@ -8,9 +8,14 @@ import TaskLayout from "@/pages";
 
 const PendingTasks = () => {
   const taskData = useSelector(taskList);
+  const todayDate = new Date().getDate();
 
   const { tasks } = taskData;
-  const allTasks = tasks.filter((task) => task.status !== taskStatus.COMPLETED);
+  const allTasks = tasks.filter((task) => {
+    const taskDay = task.created_at?.split("-")[2].split("T")[0];
+    return taskDay !== undefined && parseInt(taskDay) !== todayDate && task.status === taskStatus.ACTIVE;
+  });
+
 
   return (
     <>

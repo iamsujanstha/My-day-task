@@ -49,7 +49,7 @@ const MainSection: React.FC<MainSectionProps> = ({ tasks, heading }) => {
   }, [bg.color, bg.img]);
 
   const selectedBgImage =
-    bgTheme.color === "" && bgTheme.img === "" ? `url(${bgImage})` : bgTheme.img ? `url(${bgTheme.img})` : "";
+    bgTheme.color === "" && bgTheme.img === "" ? `url(${bgImage.src})` : bgTheme.img ? `url(${bgTheme.img})` : "";
 
   const selectedBgColor = bgTheme.img === "" && bgTheme.color ? bgTheme.color : "";
 

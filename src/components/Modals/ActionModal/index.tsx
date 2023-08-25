@@ -17,6 +17,7 @@ import { StyledModal } from "@/components/Modals/ActionModal/style";
 import Tooltip from "@/components/Tooltip";
 import { taskCancelled } from "@reduxjs/toolkit/dist/listenerMiddleware/exceptions";
 import ClickOutside from "@/components/ClickOutside";
+import moment from "moment";
 
 const PopupModal = dynamic(() => import("@/components/Modals/Popup"), {
   ssr: false,
@@ -59,7 +60,7 @@ const ActionModal = ({ isOpen, taskId }: ActionModalProps) => {
   const { tasks } = taskData;
 
   const data = tasks.find((task) => taskId === task.id);
-  const { id, status, task_name, is_important } = data || {};
+  const { id, status, task_name, is_important, created_at } = data || {};
 
   const handleClick = (id: any, item: any) => {
     setItemName(task_name);
@@ -76,6 +77,8 @@ const ActionModal = ({ isOpen, taskId }: ActionModalProps) => {
           status: taskStatus.COMPLETED,
           task_name,
           is_important,
+          created_at: moment().format("YYYY-MM-DD HH:mm:ss"),
+
         };
         dispatch(setCompletedStatus(payload));
         break;
@@ -86,6 +89,7 @@ const ActionModal = ({ isOpen, taskId }: ActionModalProps) => {
           status: taskStatus.ACTIVE,
           task_name,
           is_important,
+          created_at: moment().format("YYYY-MM-DD HH:mm:ss"),
         };
         dispatch(setCompletedStatus(payload2));
         break;
@@ -95,7 +99,6 @@ const ActionModal = ({ isOpen, taskId }: ActionModalProps) => {
         break;
 
       case "delete":
-        // dispatch(deleteTask({ id }));
         setShowModal(true);
         break;
 

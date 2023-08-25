@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const TASK_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const TASK_BASE_URL =
+  process.env.NODE_ENV === "development" ? "http://localhost:8000/" : "https://todo-api-yasj.onrender.com/";
 
 const axiosConfigs = {
   // ⏲️ If the api doesnot responds within 7 seconds then the request is cancelled out
@@ -32,38 +33,5 @@ taskAxios.interceptors.request.use(
     return Promise.reject(error);
   }
 );
-
-// taskAxios.interceptors.response.use(
-//   function (response) {
-//     switch (true) {
-//       case Boolean(response.data): {
-//         const { status, data } = response;
-//         const { data: payloadData, ...extraPayload } = data.payload;
-//         return {
-//           data: payloadData,
-//           message: data.message,
-//           status,
-//           ...extraPayload,
-//         };
-
-//         return {
-//           data: response.data.payload.data,
-//           status: response.status,
-//           message: response.data.message,
-//           ...response.data.payload,
-//         }
-//       }
-//       case !(response.data && response.data.payload && response.data.payload.data): {
-//         Promise.reject("The response doesn't meet the proper required criteria.");
-//         return false;
-//       }
-//       default:
-//         return response;
-//     }
-//   },
-//   function (error) {
-//     return Promise.reject(error);
-//   }
-// );
 
 export { taskAxios };

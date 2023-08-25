@@ -16,9 +16,10 @@ type MainSectionProps = {
   tasks: taskType;
   heading: string;
 };
+
 const MainSection: React.FC<MainSectionProps> = ({ tasks, heading }) => {
   const [showSidebar, setShowSidebar] = React.useState(false);
-  const [bgColor, setBgColor] = React.useState({
+  const [bgTheme, setBgTheme] = React.useState({
     color: "",
     img: "",
   });
@@ -40,29 +41,27 @@ const MainSection: React.FC<MainSectionProps> = ({ tasks, heading }) => {
       const themeValue = localStorage.getItem("theme");
       if (themeValue) {
         const theme = JSON.parse(themeValue);
-        setBgColor(theme);
+        setBgTheme(theme);
       }
     }
   }, [bg.color, bg.img]);
 
-  const selectedBg = bgColor.color
-    ? bgColor.color
-    : bgColor.img && `url(${bgColor.img})`;
+  const selectedBgImage =
+    bgTheme.color === undefined && bgTheme.img === undefined ? `url(${bgImage})` : bgTheme.img ? `url(${bgTheme.img})` : "";
+
+  const selectedBgColor = bgTheme.img === undefined && bgTheme.color ? bgTheme.color : "";
 
   return (
     <MainSectionContainer
       style={{
-        background: selectedBg || `url(${bgImage.src})`,
+        backgroundImage: selectedBgImage || `url(${bgImage})`,
+        backgroundColor: selectedBgColor,
         backgroundSize: "cover",
         transition: "all 0.8s ease-in-out",
       }}
     >
       <span className="hamburger-menu" onClick={handleClick}>
-        {!showSidebar ? (
-          <RxHamburgerMenu size={30} />
-        ) : (
-          <RxCross1 size={24} color="#606060" />
-        )}
+        {!showSidebar ? <RxHamburgerMenu size={30} /> : <RxCross1 size={24} color="#606060" />}
       </span>
       <div className="heading-container">
         <Heading title={heading} />
@@ -70,9 +69,7 @@ const MainSection: React.FC<MainSectionProps> = ({ tasks, heading }) => {
       <div className="task-list-container">
         <TaskList taskList={tasks} heading={heading} />
       </div>
-      <div className="input-field-container">
-        {route !== "completed" && <InputField />}
-      </div>
+      <div className="input-field-container">{route !== "completed" && <InputField />}</div>
     </MainSectionContainer>
   );
 };

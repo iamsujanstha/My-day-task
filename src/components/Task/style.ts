@@ -19,6 +19,7 @@ export const StyledTask = styled.div`
     flex: 1;
     display: flex;
     gap: 1.2rem;
+    justify-content: space-between;
     align-items: center;
 
     .edit-field{
@@ -33,7 +34,12 @@ export const StyledTask = styled.div`
           color: #111;
           font-weight: 500;
         }
-  }
+
+      }
+      .task-time{
+        font-size: 0.8rem;
+        color: #777;
+      }
 
     li{
       color: #111;

@@ -7,7 +7,6 @@ export const taskListApi = {
   },
 
   post: (payload: taskType) => {
-    "payload", payload;
     return axios.post("tasks/", payload).then((response) => {
       return response.data;
     });

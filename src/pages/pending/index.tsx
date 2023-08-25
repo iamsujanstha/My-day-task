@@ -16,7 +16,6 @@ const PendingTasks = () => {
     return taskDay !== undefined && parseInt(taskDay) !== todayDate && task.status === taskStatus.ACTIVE;
   });
 
-
   return (
     <>
       <Head>

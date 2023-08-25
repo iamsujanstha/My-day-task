@@ -58,6 +58,7 @@ const TaskList: React.FC<any> = ({ taskList, heading }) => {
                         task_name={task.task_name}
                         status={task.status}
                         is_important={task.is_important}
+                        createdAt={task.created_at}
                       />
                     </div>
                   )}

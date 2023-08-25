@@ -133,13 +133,17 @@ export const taskSlice = createSlice({
       };
     },
 
-    setThemeColor(state, { payload }: PayloadAction<{ color: string, img: string }>) {
+    setThemeColor(state, { payload }: PayloadAction<{ color: string; img: string }>) {
       const { color, img } = payload;
-      state.theme.color = color;
-      state.theme.img = img;
+      if (color) {
+        state.theme.color = color;
+      }
+      if (img) {
+        state.theme.img = img;
+      }
     },
 
-    updateTaskStatus(state, { payload }: PayloadAction<taskType>) { 
+    updateTaskStatus(state, { payload }: PayloadAction<taskType>) {
       return {
         ...state,
         isLoading: false,
@@ -153,7 +157,7 @@ export const taskSlice = createSlice({
           return task;
         }),
       };
-    }
+    },
   },
 });
 

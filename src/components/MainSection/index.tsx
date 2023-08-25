@@ -16,7 +16,6 @@ type MainSectionProps = {
   tasks: taskType;
   heading: string;
 };
-
 const MainSection: React.FC<MainSectionProps> = ({ tasks, heading }) => {
   const [showSidebar, setShowSidebar] = React.useState(false);
   const [bgTheme, setBgTheme] = React.useState({
@@ -41,20 +40,23 @@ const MainSection: React.FC<MainSectionProps> = ({ tasks, heading }) => {
       const themeValue = localStorage.getItem("theme");
       if (themeValue) {
         const theme = JSON.parse(themeValue);
-        setBgTheme(theme);
+        setBgTheme({
+          color: theme.color ?? "",
+          img: theme.img ?? "",
+        });
       }
     }
   }, [bg.color, bg.img]);
 
   const selectedBgImage =
-    bgTheme.color === undefined && bgTheme.img === undefined ? `url(${bgImage})` : bgTheme.img ? `url(${bgTheme.img})` : "";
+    bgTheme.color === "" && bgTheme.img === "" ? `url(${bgImage})` : bgTheme.img ? `url(${bgTheme.img})` : "";
 
-  const selectedBgColor = bgTheme.img === undefined && bgTheme.color ? bgTheme.color : "";
+  const selectedBgColor = bgTheme.img === "" && bgTheme.color ? bgTheme.color : "";
 
   return (
     <MainSectionContainer
       style={{
-        backgroundImage: selectedBgImage || `url(${bgImage})`,
+        backgroundImage: selectedBgImage,
         backgroundColor: selectedBgColor,
         backgroundSize: "cover",
         transition: "all 0.8s ease-in-out",

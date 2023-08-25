@@ -1,7 +1,9 @@
 import axios from "axios";
 
 const TASK_BASE_URL =
-  process.env.NODE_ENV === "development" ? "http://localhost:8000/" : "https://todo-api-yasj.onrender.com/";
+  process.env.NODE_ENV !== "development"
+    ? process.env.NEXT_PUBLIC_LOCAL_BASE_URL
+    : process.env.NEXT_PUBLIC_PROD_BASE_URL;
 
 const axiosConfigs = {
   // ⏲️ If the api doesnot responds within 7 seconds then the request is cancelled out

@@ -12,8 +12,8 @@ const PendingTasks = () => {
 
   const { tasks } = taskData;
   const allTasks = tasks.filter((task) => {
-    const taskDay = task.created_at?.split("-")[2].split("T")[0];
-    return taskDay !== undefined && parseInt(taskDay) !== todayDate && task.status === taskStatus.ACTIVE;
+    // const taskDay = task.created_at?.split("-")[2].split("T")[0];
+    return task.status === taskStatus.ACTIVE;
   });
 
   return (

@@ -53,13 +53,14 @@ const MainSection: React.FC<MainSectionProps> = ({ tasks, heading }) => {
 
   const selectedBgColor = bgTheme.img === "" && bgTheme.color ? bgTheme.color : "";
 
+
   return (
     <MainSectionContainer
       style={{
         backgroundImage: selectedBgImage,
         backgroundColor: selectedBgColor,
         backgroundSize: "cover",
-        transition: "all 0.8s ease-in-out",
+        // transition: "all 0.8s ease-in-out",
       }}
     >
       <span className="hamburger-menu" onClick={handleClick}>
